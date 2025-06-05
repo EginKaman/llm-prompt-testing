@@ -1,0 +1,28 @@
+includes:
+  - ./vendor/larastan/larastan/extension.neon
+  - ./vendor/nesbot/carbon/extension.neon
+  - ./vendor/pestphp/pest/extension.neon
+
+parameters:
+  paths:
+    - app
+    - config
+    - database/factories
+    - database/seeders
+    - database/migrations
+#    - lang
+    - routes
+  configDirectories:
+    - config
+  level: 6 # (0-8)
+  tmpDir: bootstrap/cache/phpstan
+  checkModelProperties: true
+  parallel:
+  		jobSize: 10
+  		maximumNumberOfProcesses: 8
+  		minimumNumberOfJobsPerProcess: 2
+  ignoreErrors:
+#  		-
+#  			identifier: missingType.iterableValue
+  		-
+  			identifier: method.childReturnType
