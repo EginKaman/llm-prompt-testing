@@ -68,14 +68,6 @@ Open the application in your browser:
 
 [Home page](http://localhost/)
 
-[Admin panel](http://localhost/admin/login)
-
-Test user:
-```
-test@example.com
-password
-```
-
 ## <a name="#quality-tools"></a> Quality Tools
 
 ### Laravel Pint

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\Stemmer;
 
+use App\Services\Stemmer\Contracts\StemmerFactory as StemmerFactoryContract;
 use App\Services\Stemmer\Languages\NoStemmer;
 use App\Services\Stemmer\Languages\Ukrainian;
 use Illuminate\Support\Str;
@@ -23,7 +24,7 @@ use Wamania\Snowball\Stemmer\Spanish;
 use Wamania\Snowball\Stemmer\Stemmer;
 use Wamania\Snowball\Stemmer\Swedish;
 
-class StemmerFactory
+class StemmerFactory implements StemmerFactoryContract
 {
     public static function create(string $code): Stemmer
     {
