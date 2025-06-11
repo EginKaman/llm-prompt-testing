@@ -7,7 +7,9 @@ namespace App\Services\Stemmer\Languages;
 use Wamania\Snowball\Stemmer\Stem;
 
 /**
- * Semple stemmer for ukrainian language.
+ * Semple stemmer for Ukrainian language.
+ *
+ * Copied from https://github.com/teamtnt/tntsearch/blob/master/src/Stemmer/UkrainianStemmer.php
  */
 class Ukrainian extends Stem
 {
