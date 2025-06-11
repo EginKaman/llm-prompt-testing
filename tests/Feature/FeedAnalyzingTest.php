@@ -36,9 +36,15 @@ test('сheck the response llm to hallucinations', function (): void {
     $stemmer = StemmerFactory::create('uk');
 
     $keywords = collect(Rake::make($response->text)->keywords())
-        ->map(fn (string $keyword) => Str::replaceMatches('/[*`+\d.\/\]\[]/m', '', $keyword));
+        ->map(fn(string $keyword) => Str::replaceMatches('/[*`+\d.\/\]\[]/m', '', $keyword));
 
-    $intersectKeywords = $expectedKeywords->intersect($keywords->map(fn (string $keyword) => $stemmer->stem($keyword)));
+    $intersectKeywords = $expectedKeywords->intersect($keywords->map(function (string $keyword) use ($stemmer) {
+        try {
+            return $stemmer->stem($keyword);
+        } catch (Exception $e) {
+            throw new RuntimeException("Stemmer error: {$e->getMessage()} with keyword: {$keyword}");
+        }
+    }));
 
     expect($intersectKeywords->count() / $expectedKeywords->count())
         ->toBeGreaterThanOrEqual(0.5);
